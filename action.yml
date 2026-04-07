@@ -5,6 +5,9 @@ branding:
   icon: 'tag'
   color: 'blue'
 inputs:
+  github_token:
+    description: 'GitHub token to create releases.'
+    required: true
   tag_name:
     description: 'The name of the tag.'
     required: true

@@ -36319,6 +36319,7 @@ async function main() {
     let discussion_category_name = getInput('discussion_category_name');
     const generate_release_notes = getInput('generate_release_notes') === 'true';
     const make_latest = getInput('make_latest');
+    const github_token = getInput('github_token', { required: true });
     if (releaseName.trim() === '') {
         releaseName = tagName;
     }
@@ -36326,7 +36327,7 @@ async function main() {
         discussion_category_name = undefined;
     }
     const R = Octokit.plugin(restEndpointMethods);
-    const octokit = new R({ auth: process.env.GITHUB_TOKEN });
+    const octokit = new R({ auth: github_token });
     const r = await octokit.rest.repos.createRelease({
         owner: github_context.repo.owner,
         repo: github_context.repo.repo,

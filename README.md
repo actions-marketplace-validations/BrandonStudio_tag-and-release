@@ -31,12 +31,12 @@ jobs:
       - uses: BrandonStudio/tag-and-release@v1
         with:
           tag_name: ${{ inputs.tag_name }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### Inputs
 
+- `github_token`: the GitHub token to use for authentication
 - `tag_name`: the name of the tag to be created
 - `commit`: the commit to which the new tag should point, defaults to `${{ GITHUB_SHA }}`
 - `release_name`: the name of the new release; if omitted, defaults to `tag_name`
