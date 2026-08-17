@@ -27,7 +27,7 @@ if git diff --cached --name-only | grep -q "$STAGED_FILE"; then
     sed -i 's/"src\/index.ts"/"tmp\/staged_index.ts"/' $TSCONFIG
 
     # Compile the staged file
-    ncc build $STAGED_FILE --license LICENSE.txt || exit 1
+    npx -y ncc build $STAGED_FILE --license LICENSE.txt || exit 1
 
     # Move the compiled file to the dist directory
     cp -rf dist $CURRENT_DIR/ || exit 1

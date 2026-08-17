@@ -11,21 +11,20 @@ jobs:
   dist_check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@v6
+    - uses: actions/setup-node@v6
       with:
-        node-version: '20'
-    - name: Setup ncc
+        node-version: '24'
+    - name: Install dependencies
       run: |
-        npm install -g @vercel/ncc typescript
         npm ci
     - name: Build
       run:
-        ncc build src/index.ts --license LICENSE.txt
+        npm run build
     - name: Check
       run: |
         git diff dist/ | tee .git-diff-dist-check-result
         if [ -s .git-diff-dist-check-result ]; then
-          echo "dist/ is not up-to-date. Please run 'ncc build src/index.ts --license LICENSE.txt' and commit the changes."
+          echo "dist/ is not up-to-date. Please run 'npm run build' and commit the changes."
           exit 1
         fi
